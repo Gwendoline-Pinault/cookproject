@@ -8,9 +8,9 @@ function App() {
   return (
     <div className='w-full h-full flex flex-col'>
       <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-      <h1></h1>
 
-      <Login setIsLoggedIn={setIsLoggedIn} />
+      <Login setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}/>
+      
     </div>
   )
 }
