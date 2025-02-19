@@ -1,18 +1,11 @@
-import { createContext, ReactNode, useState } from "react";
+import { ReactNode, useState } from "react";
 import { User } from "./pages/Home";
-
-export type Connexion = {
-  isAuthenticate: boolean;
-  signIn: (user: User) => void;
-  signOut: () => void;
-}
+import { AuthContext } from "./hooks/useAuthContext";
 
 type AuthProviderProps = {
   children: ReactNode;
   isLoggedIn: boolean;
 }
-
-export const AuthContext = createContext<Connexion | undefined>(undefined);
 
 export const AuthProvider = ({children, isLoggedIn}: AuthProviderProps) => {
   

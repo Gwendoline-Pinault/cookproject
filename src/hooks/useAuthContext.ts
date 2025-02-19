@@ -1,5 +1,13 @@
-import { useContext } from "react"
-import { AuthContext, Connexion } from "../AuthContext";
+import { createContext, useContext } from "react"
+import { User } from "../pages/Home";
+
+export type Connexion = {
+  isAuthenticate: boolean;
+  signIn: (user: User) => void;
+  signOut: () => void;
+}
+
+export const AuthContext = createContext<Connexion | undefined>(undefined);
 
 export const useAuthContext = ():Connexion => {
   const context = useContext(AuthContext);
