@@ -8,11 +8,13 @@ type AuthProviderProps = {
 }
 
 export const AuthProvider = ({children, isLoggedIn}: AuthProviderProps) => {
+  const USERNAME = import.meta.env.VITE_APP_USERNAME;
+  const PASSWORD = import.meta.env.VITE_APP_PASSWORD;
   
   const [isAuthenticate, setIsAuthenticate] = useState(isLoggedIn || false);
 
   const signIn = ({username, password}: User) => {
-    if (username === "Captain" && password === "Il0v3H3@lthy") {
+    if (username === USERNAME && password === PASSWORD) {
       setIsAuthenticate(true);
     }
   }

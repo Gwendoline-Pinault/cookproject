@@ -1,15 +1,23 @@
 import { Link } from "react-router-dom";
-import { useFetch } from "../hooks/useFetch";
+import { RapidApiCollectionResponse, useFetch } from "../hooks/useFetch";
 import loading from '/loading.jpg';
+import { useEffect, useState } from "react";
 
 export const RecipesList: React.FunctionComponent = () => {
-  const {data, isLoading} = useFetch('');
+  const [url, setUrl] = useState('https://tasty.p.rapidapi.com/recipes/list');
+
+  const {data, isLoading} = useFetch(url);
+
+  console.log(data);
+  
+  // const data: RapidApiCollectionResponse = [{id: 1, cook_time_minutes: 30, description:'This is a super recipe', name:'Test recipe', slug:'test-recipe', thumbnail_url:'/cook_hat.png', total_time_minutes: 40, user_ratings: {score: 3}}, {id: 1, cook_time_minutes: 30, description:'This is a super recipe', name:'Test recipe', slug:'test-recipe', thumbnail_url:'/cook_hat.png', total_time_minutes: 40, user_ratings: {score: 3}}, {id: 1, cook_time_minutes: 30, description:'This is a super recipe', name:'Test recipe', slug:'test-recipe', thumbnail_url:'/cook_hat.png', total_time_minutes: 40, user_ratings: {score: 3}}, {id: 1, cook_time_minutes: 30, description:'This is a super recipe', name:'Test recipe', slug:'test-recipe', thumbnail_url:'/cook_hat.png', total_time_minutes: 40, user_ratings: {score: 3}}, {id: 1, cook_time_minutes: 30, description:'This is a super recipe', name:'Test recipe', slug:'test-recipe', thumbnail_url:'/cook_hat.png', total_time_minutes: 40, user_ratings: {score: 3}}, {id: 1, cook_time_minutes: 30, description:'This is a super recipe', name:'Test recipe', slug:'test-recipe', thumbnail_url:'/cook_hat.png', total_time_minutes: 40, user_ratings: {score: 3}}];
+  
+  // const isLoading = true;
 
   const handleSubmitSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const search = e.currentTarget.search.value
-    console.log(search);
+    const search = e.currentTarget.search.value;
   }
 
   return (
@@ -22,20 +30,21 @@ export const RecipesList: React.FunctionComponent = () => {
       </form>
 
       {isLoading ? 
-        <div className='center'>
-          <h3>Wonderfull recipes list is loading...</h3>
-          <img className='logo logo-spin' src={loading} alt="loading" />
-        </div> 
+          <section className="mt-10 w-full">
+            <h3 className="text-center ">Wonderfull recipes are loading...</h3>
+            <div className='mt-20 mb-10 flex justify-center'>
+              <img className='logo logo-spin' src={loading} alt="loading" />
+            </div>
+          </section>
 
         :
-        <section className="flex w-[90%]">
-          {data}
-          <Link to="/recipes/greak-mushrooms" className="m-2 rounded shadow-emerald-700/50 hover:shadow-md">
-            <article className="w-50 h-40 border-1 border-emerald-500 rounded relative">
-              <img src="" alt="recipe image" className="text-center bg-white h-35 rounded" />
-              <h3 className="bg-emerald-500 text-white font-bold text-center absolute bottom-0 w-full">Recipe title</h3>
-            </article>
-          </Link>
+        <section className="mt-10 w-[90%] grid grid-cols-5 gap-10">
+          {data && data.map((recipe) => 
+            <Link to={"/recipes/" + recipe.id} className="rounded shadow-emerald-700/50 hover:shadow-md border-1 border-emerald-500 relative max-h-70">
+                <img src={recipe.thumbnail_url} alt="recipe image" className="text-center rounded w-full h-full max-w-full max-h-full" />
+                <h3 className="bg-emerald-500 text-white font-bold text-center absolute bottom-0 w-full">{recipe.name}</h3>
+            </Link>
+          )}
         </section>
       }
     </main>
