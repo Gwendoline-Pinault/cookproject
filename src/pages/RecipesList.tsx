@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useFetch } from "../hooks/useFetch";
+import loading from '/loading.jpg';
 
 export const RecipesList: React.FunctionComponent = () => {
+  const {data, isLoading} = useFetch('');
 
   const handleSubmitSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -18,14 +21,23 @@ export const RecipesList: React.FunctionComponent = () => {
         <button className="bg-emerald-500 px-2 text-white font-bold hover:bg-emerald-600">Search</button>
       </form>
 
-      <section className="flex w-[90%]">
-        <Link to="/recipes/greak-mushrooms" className="m-2 rounded shadow-emerald-700/50 hover:shadow-md">
-          <article className="w-50 h-40 border-1 border-emerald-500 rounded relative">
-            <img src="" alt="recipe image" className="text-center bg-white h-35 rounded" />
-            <h3 className="bg-emerald-500 text-white font-bold text-center absolute bottom-0 w-full">Recipe title</h3>
-          </article>
-        </Link>
-      </section>
+      {isLoading ? 
+        <div className='center'>
+          <h3>Wonderfull recipes list is loading...</h3>
+          <img className='logo logo-spin' src={loading} alt="loading" />
+        </div> 
+
+        :
+        <section className="flex w-[90%]">
+          {data}
+          <Link to="/recipes/greak-mushrooms" className="m-2 rounded shadow-emerald-700/50 hover:shadow-md">
+            <article className="w-50 h-40 border-1 border-emerald-500 rounded relative">
+              <img src="" alt="recipe image" className="text-center bg-white h-35 rounded" />
+              <h3 className="bg-emerald-500 text-white font-bold text-center absolute bottom-0 w-full">Recipe title</h3>
+            </article>
+          </Link>
+        </section>
+      }
     </main>
   )
 }

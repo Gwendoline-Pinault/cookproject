@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 type NavbarProps = {
   isAuthenticate: boolean;
   signOut: () => void;
@@ -11,7 +13,8 @@ export const Navbar = ({isAuthenticate, signOut}: NavbarProps) => {
         <img src="/cook_hat.png" alt="cook hat icon" className="w-6 h-6 mx-2" />
       </div>
       <nav className="p-3">
-        
+        <Link to="/recipes" className="px-2 hover:text-emerald-500">Recipes List</Link>
+        <Link to="/favorites" className="px-2 hover:text-emerald-500">Your favorites</Link>
       </nav>
 
       {isAuthenticate && 
