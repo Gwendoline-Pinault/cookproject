@@ -33,6 +33,7 @@ export const RecipesList: React.FunctionComponent = () => {
       <section className="mt-10 w-[90%] grid grid-cols-5 gap-10">
         {data && data.map((recipe) => 
           <NavLink to={"/recipes/" + recipe.id} className="rounded shadow-emerald-700/50 hover:shadow-md border-1 border-emerald-500 relative max-h-70">
+            {/* <button onClick={() => setFavorite({id: recipe.id, thumbnail_url: recipe.thumbnail_url, name: recipe.name})}>☆</button> */}
             <img src={recipe.thumbnail_url} alt="recipe image" className="text-center rounded w-full h-full max-w-full max-h-full" />
             <h3 className="bg-emerald-500 text-white font-bold text-center absolute bottom-0 w-full">{recipe.name}</h3>
           </NavLink>

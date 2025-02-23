@@ -1,5 +1,11 @@
 import { NavLink } from "react-router-dom";
 
+export type FavoriteObject = {
+  id: number;
+  thumbnail_url: string;
+  name: string;
+}
+
 export const Favorites:React.FunctionComponent = () => {
   const favorites = [{id: 1, thumbnail_url: 'cook_hat.png', name: 'cook'}];
 
