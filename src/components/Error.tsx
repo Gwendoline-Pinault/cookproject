@@ -8,7 +8,7 @@ export const Error = () => {
 
       <img src="/cook_error.png" alt="" className="rounded-xl mb-10" />
 
-      <Link to="/" className="my-btn">Return to Home page</Link>
+      <Link to="/recipes" className="my-btn">Return to Home page</Link>
     </main>
   )
 }

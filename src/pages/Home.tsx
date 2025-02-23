@@ -24,7 +24,7 @@ export const Home = () => {
     const username = e.currentTarget.username.value;
     const password = e.currentTarget.password.value;
 
-    if (username !== "Captain" || password !== "Il0v3H3@lthy") {
+    if (username !== import.meta.env.USERNAME || password !== import.meta.env.PASSWORD) {
       setErrorPop(true);
       setTimeout(() => {setErrorPop(false)}, 3000);
     }

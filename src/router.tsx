@@ -6,6 +6,7 @@ import { AuthProvider } from "./AuthContext";
 import { Home } from "./pages/Home";
 import { RecipeDetails } from "./pages/RecipeDetails";
 import { App } from "./pages/App";
+import { Favorites } from "./pages/Favorites";
 
 export const Router = () => {
   const router = createBrowserRouter([
@@ -28,10 +29,18 @@ export const Router = () => {
           errorElement: <Error />,
         }, 
         {
-          path: '/recipes/:recipe',
+          path: '/recipes/:id',
           element:
           <ProtectedRoute>
             <RecipeDetails />
+          </ProtectedRoute>,
+          errorElement: <Error />,
+        },
+        {
+          path: '/favorites',
+          element: 
+          <ProtectedRoute>
+            <Favorites />
           </ProtectedRoute>,
           errorElement: <Error />,
         }
