@@ -19,7 +19,7 @@ export function useFetch(url: string) {
     }
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     setIsLoading(true);
 
     async function fetchData() {

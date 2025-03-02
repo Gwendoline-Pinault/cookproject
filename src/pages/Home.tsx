@@ -12,12 +12,17 @@ export const Home = () => {
   const {isAuthenticate, signIn} = useAuthContext();
   const navigate = useNavigate();
 
+  // if the user is authenticate, redirect to the recipes list
   useEffect(() => {
     if (isAuthenticate) {
       navigate('/recipes');
     }
   }, [isAuthenticate, navigate]);
 
+  /**
+   * Get the form values and check if the user is registered, if true, sign him/her.
+   * @param e submit form event
+   */
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -44,9 +49,11 @@ export const Home = () => {
           <h2 className="font-bold text-md mb-10">Please, sign in to access recipes!</h2>
           <form className="flex flex-col w-lg items-center p-5" onSubmit={(e) => handleSubmit(e)}>
             <label htmlFor="username" className="font-bold">Username</label>
-            <input type="text" name="username" className="focus:outline-emerald-500 active:bg-emerald-500 focus:outline-2 input" />
+            <input type="text" id="username" name="username" autoComplete="true" className="focus:outline-emerald-500 active:bg-emerald-500 focus:outline-2 input" />
+
             <label htmlFor="password" className="mt-5 font-bold">Password</label>
-            <input type="password" name="password" className="focus:outline-emerald-500 active:bg-emerald-500 focus:outline-2 input" />
+            <input type="password" id="password" name="password" autoComplete="true" className="focus:outline-emerald-500 active:bg-emerald-500 focus:outline-2 input" />
+
             <button type="submit" className="my-btn mt-5">Sign in</button>
           </form>
         </section>

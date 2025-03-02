@@ -2,12 +2,12 @@ import { createContext, useContext } from "react";
 import { FavoriteObject } from "../pages/Favorites";
 
 export type FavoritesType = {
-  favorites: [],
-  setFavorites: (object: FavoriteObject) => void;
-  removeFavorites: () => void;
+  favorites: Array<FavoriteObject>,
+  setFavorites: (newArray: Array<FavoriteObject>) => void;
+  removeFavorites: (recipeId: number) => void;
 }
 
-export const FavoriteContext = createContext<FavoritesType | []>([]);
+export const FavoriteContext = createContext<FavoritesType | undefined>(undefined);
 
 export const useFavoriteContext = () => {
   const context = useContext(FavoriteContext);

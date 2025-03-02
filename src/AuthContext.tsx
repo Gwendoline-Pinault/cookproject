@@ -2,7 +2,7 @@ import { ReactNode, useState } from "react";
 import { User } from "./pages/Home";
 import { AuthContext } from "./hooks/useAuthContext";
 
-type AuthProviderProps = {
+export type AuthProviderProps = {
   children: ReactNode;
   isLoggedIn: boolean;
 }

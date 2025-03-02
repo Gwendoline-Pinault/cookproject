@@ -7,6 +7,7 @@ import { Home } from "./pages/Home";
 import { RecipeDetails } from "./pages/RecipeDetails";
 import { App } from "./pages/App";
 import { Favorites } from "./pages/Favorites";
+import { FavoritesProvider } from "./FavoritesContext";
 
 export const Router = () => {
   const router = createBrowserRouter([
@@ -49,7 +50,9 @@ export const Router = () => {
   ])
   return (
     <AuthProvider isLoggedIn={false}>
-      <RouterProvider router={router} />
+      <FavoritesProvider isLoggedIn={false}>
+        <RouterProvider router={router} />
+      </FavoritesProvider>
     </AuthProvider>
   )
 }

@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom"
-import { useFetch } from "../hooks/useFetch";
+// import { useFetch } from "../hooks/useFetch";
 import loading from '/loading.jpg';
+import {data} from "../components/data";
 
 export const RecipeDetails:React.FunctionComponent = () => {
   const params = useParams();
@@ -10,7 +11,8 @@ export const RecipeDetails:React.FunctionComponent = () => {
   }
 
   // get recipes list
-  const {data, isLoading} = useFetch('list');
+  // const {data, isLoading} = useFetch('list');
+  const isLoading = false;
 
   // get the current recipe (because ther is no /recipes/id route on API)
   const recipe = data.find((item) => item.id === parseInt(params.id as string, 10));
